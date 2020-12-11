@@ -4,6 +4,7 @@ import AppLoading from 'expo-app-loading';
 import { Provider } from 'react-redux';
 import * as Font from 'expo-font';
 import ReduxThunk from 'redux-thunk';
+import * as Notifications from 'expo-notifications';
 //import {composeWithDevTools} from 'redux-devtools-extension';
 
 import productsReducer from './store/reducers/products';
@@ -12,6 +13,12 @@ import ordersReducer from './store/reducers/orders';
 import usersReducer from './store/reducers/users';
 import authReducer from './store/reducers/auth';
 import AppNavigator from './navigation/AppNavigator';
+
+Notifications.setNotificationHandler({
+  handleNotification: async() => {
+    return {shouldShowAlert: true}
+  },
+});
 
 const rootReducer = combineReducers({
   products: productsReducer,
